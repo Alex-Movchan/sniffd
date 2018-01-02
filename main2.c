@@ -1,4 +1,5 @@
 #include "client_head.h"
+#include "./daemon_sniff.h"
 
 char		config[20];
 pcap_if_t   *alldevs;
@@ -35,7 +36,10 @@ int			main(int ac, char **av)
 	char	buff[MAX_LINE_LEN];
 
 	if (ac < 2)
+	{
+		ft_putendl_fd("Error arguments. Use cli --help", STDERR_FILENO);
 		return (1);
+	}
 	ft_bzero(buff, MAX_LINE_LEN);
 	if (!ft_strcmp(av[1], "start"))
 		start_sniffd(ac, av);

@@ -14,7 +14,7 @@
 #include <pcap.h>
 #include <arpa/inet.h>
 #include <sys/stat.h>
-#include "libft/libft.h"
+#include "./libft/libft.h"
 #include "ft_net.h"
 
 #define FILTER "ip"

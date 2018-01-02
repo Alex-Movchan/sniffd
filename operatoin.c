@@ -1,4 +1,5 @@
 #include "client_head.h"
+#include "daemon_sniff.h"
 
 void	ft_stat(int sock)
 {

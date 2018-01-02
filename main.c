@@ -21,6 +21,6 @@ int			main(int ac, char **av)
 		ft_putendl_fd("Error permission denied", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
-	dev = start_config(av[2]);
+	dev = start_config(av[1]);
 	start_daemon(dev);
 }

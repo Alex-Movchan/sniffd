@@ -1,7 +1,6 @@
 #ifndef CLIENT_HEAD_H
 #define CLIENT_HEAD_H
 
-#include "daemon_sniff.h"
 #define MAX_LINE_LEN 128
 
 

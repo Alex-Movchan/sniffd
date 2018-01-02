@@ -23,7 +23,7 @@ static void	hendle_select(const int sock, char *readbuf)
 	}
 }
 
-static void	handle_stat(const int sock, char *readbuf)
+static void	handle_show(const int sock, char *readbuf)
 {
 	t_nod	*lst;
 	char	*nbr = NULL;
@@ -41,8 +41,10 @@ static void	handle_stat(const int sock, char *readbuf)
 
 int		handle_connec(const int sock)
 {
+	t_nod		*lst;
+        char		*nbr = NULL;
 	char		readbuf[MAX_CONECT_BUFF];
-	int			len;
+	int		len;
 
 	len = (int)recv(sock,readbuf, MAX_CONECT_BUFF, 0);
 	readbuf[len] = '\0';
@@ -50,20 +52,21 @@ int		handle_connec(const int sock)
 	{
 		if (pcap)
 			pcap_close(pcap);
-		pcap_freealldevs(alldevs);//dell_tree
+		pcap_freealldevs(alldevs);
+		ft_dell_tree(root_nod);
 		exit(EXIT_SUCCESS);
 	}
-	if (!ft_strcmp(readbuf, "stat"))
+	else if (!ft_strcmp(readbuf, "stat"))
 	{
 		ft_tree_traversal(root_nod, sock);
 		return (1);
 	}
-	if (!ft_strncmp(readbuf, "show", 4))
+	else if (!ft_strncmp(readbuf, "show", 4))
 	{
-		hendle_select(sock, readbuf);
+		handle_show(sock, readbuf);
 		return (1);
 	}
-	if (!ft_strncmp(readbuf, "select", 6))
+	else if (!ft_strncmp(readbuf, "select", 6))
 		hendle_select(sock, readbuf);
 
 	return (1);
