@@ -5,7 +5,8 @@ static void	hendle_select(const int sock, char *readbuf)
 
 	pcap_close(pcap);
 	pcap = NULL;
-	root_nod = NULL;//dell_nod??
+	ft_dell_tree(root_nod);
+	root_nod = NULL;
 	ft_bzero(config, ft_strlen(config));
 	ft_strcpy(config, readbuf + 6);
 	if (pthread_cancel(tid))

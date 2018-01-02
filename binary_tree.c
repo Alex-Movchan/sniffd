@@ -115,3 +115,14 @@ void	ft_tree_traversal(t_nod *nod, int sock)
 		ft_tree_traversal(nod->left, sock);
 	}
 }
+
+void	ft_dell_tree(t_nod *lst)
+{
+	if (lst)
+	{
+		ft_dell_tree(lst->left);
+		ft_dell_tree(lst->right);
+		free(lst);
+	}
+
+}
