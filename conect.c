@@ -38,7 +38,6 @@ int		bind_passive_socket(int * sock)
 	return 0;
 }
 
-
 int 	accept_connections(const int master)
 {
 	int					proceed, slave, retval;

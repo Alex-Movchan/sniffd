@@ -1,6 +1,6 @@
 #include "daemon_sniff.h"
 
-static void	handler_sig()
+static void	handler_sig(void)
 {
 	struct sigaction	sig;
 
@@ -126,8 +126,8 @@ void		daemonize(void)
 		ft_putstr_fd("It is not possible to make the current working directory /", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
-	openlog(LOG_PREFIX, LOG_PID|LOG_CONS|LOG_NDELAY|LOG_NOWAIT, LOG_LOCAL0);
-	(void) setlogmask(LOG_UPTO(LOG_DEBUG));
+	openlog(LOG_PREFIX, LOG_PID | LOG_CONS | LOG_NDELAY | LOG_NOWAIT, LOG_LOCAL0);
+	(void)setlogmask(LOG_UPTO(LOG_DEBUG));
 	close_allfd();
 }
 

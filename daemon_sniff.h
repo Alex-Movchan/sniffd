@@ -14,7 +14,7 @@
 #include <pcap.h>
 #include <arpa/inet.h>
 #include <sys/stat.h>
-#include "../libft/libft.h"
+#include "libft/libft.h"
 #include "ft_net.h"
 
 #define FILTER "ip"
@@ -35,26 +35,61 @@ typedef struct		s_nod
 	int				count;
 }					t_nod;
 
-extern pcap_if_t	*alldevs;
+extern pcap_if_t	*alldevs; //structure of available devices
 extern pcap_t		*pcap;
-extern char			errbuff[PCAP_ERRBUF_SIZE];
-extern t_nod		*root_nod;
-extern pthread_t	tid;
-extern char			config[20];
+extern char			errbuff[PCAP_ERRBUF_SIZE]; //error buffer for pcap
+extern t_nod		*root_nod; //pointer to the root of a tree
+extern pthread_t	tid; //flow identifier sniffs
+extern char			config[20]; //configuration string
 
-void				ft_pthread_config(void);
+
+
+
+/*
+ * daemonize.c
+ */
 int					ft_already_running(void);
+/* check for the presence of a daemon in the system, file lock */
 void				daemonize(void);
+/* demonization of the process */
+
+/*
+ * sniff.c
+ */
 void				*ft_sniff(void *arg);
-void				ft_read_config();
+/* sniffs a packets */
+
+/*
+ * conect.c
+ */
 void				*ft_conect(void *arg);
-void				ft_add_tree(t_nod *pack, t_nod **root);
-void				ft_tree_traversal(t_nod *nod, int sock);
-t_nod				*ft_search_intree(char *ip, t_nod *root);
+/* creates a link with command line interface */
 int					sendall(int s, char *buf, int len, int flags);
+/* sending a message */
+
+/*
+ * binary_tree.c
+ */
+void				ft_add_tree(t_nod *pack, t_nod **root);
+/* addition of an element of a tree */
+void				ft_tree_traversal(t_nod *nod, int sock);
+/* tree traversal */
+t_nod				*ft_search_intree(char *ip, t_nod *root);
+/* searching for an element in the tree */
+
+/*
+ * start_daemon.c
+ */
 void				start_daemon(char *str);
+/* preparation for demonization of the process */
 char				*start_config(char *str);
+/*  checking the startup configuration */
+
+/*
+ * handle_conect
+ */
 int					handle_connec(const int sock);
+/* receiving requests and sending replies */
 
 
 #endif
