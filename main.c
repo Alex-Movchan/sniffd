@@ -16,6 +16,7 @@ int			main(int ac, char **av)
 		ft_putendl_fd("Error count argument", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
+	/* check for super administrator privileges */
 	if (getuid() != 0)
 	{
 		ft_putendl_fd("Error permission denied", STDERR_FILENO);

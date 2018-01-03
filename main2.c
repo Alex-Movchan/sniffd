@@ -52,6 +52,7 @@ int			main(int ac, char **av)
 		}
 		ft_hellp(len);
 	}
+	/* communication with sniffd deamon */
 	sock = ft_conect_cli();
 	if (!ft_strcmp(av[1], "stat"))
 	{

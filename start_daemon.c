@@ -54,6 +54,7 @@ char	*start_config(char *str)
 void		start_daemon(char *str)
 {
 
+	/* demonization of the process */
 	daemonize();
 	if (ft_already_running())
 	{
@@ -63,10 +64,12 @@ void		start_daemon(char *str)
 	pcap = NULL;
 	root_nod = NULL;
 	ft_strcpy(config, str);
+	/* create a thread for sniffing */
 	if (pthread_create(&tid, NULL, ft_sniff, 0))
 	{
 		syslog(LOG_ERR, "Can not create thread");
 		exit(EXIT_FAILURE);
 	}
+	/* create a communication channel with the command line interface */
 	ft_conect(NULL);
 }

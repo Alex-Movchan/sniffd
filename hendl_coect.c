@@ -1,6 +1,6 @@
 #include "daemon_sniff.h"
 
-static void	hendle_select(const int sock, char *readbuf)
+static void	hendle_select(char *readbuf)
 {
 
 	pcap_close(pcap);
@@ -9,12 +9,14 @@ static void	hendle_select(const int sock, char *readbuf)
 	root_nod = NULL;
 	ft_bzero(config, ft_strlen(config));
 	ft_strcpy(config, readbuf + 6);
+	/* stop pthread sniffing */
 	if (pthread_cancel(tid))
 	{
 		syslog(LOG_ERR, "Can not cancel thread");
 		pcap_freealldevs(alldevs);
 		exit(EXIT_FAILURE);
 	}
+	/* create a thread for sniffing */
 	if (pthread_create(&tid, NULL, ft_sniff, 0))
 	{
 		syslog(LOG_ERR, "Can not create thread");
@@ -67,7 +69,6 @@ int		handle_connec(const int sock)
 		return (1);
 	}
 	else if (!ft_strncmp(readbuf, "select", 6))
-		hendle_select(sock, readbuf);
-
+		hendle_select(readbuf);
 	return (1);
 }

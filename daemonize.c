@@ -104,7 +104,9 @@ void		daemonize(void)
 {
 	pid_t				pid;
 
+	/* clear the file creation mode mask */
 	umask(0);
+	/* lose control terminal */
 	if ((pid = fork()) < 0)
 	{
 		ft_putstr_fd("Error fork\n", STDERR_FILENO);
@@ -112,7 +114,9 @@ void		daemonize(void)
 	}
 	else if (pid != 0)
 		exit(EXIT_SUCCESS);
+	/* impossibility to get control terminal */
 	setsid();
+	/* setting ignoring of signals */
 	handler_sig();
 	if ((pid = fork()) < 0)
 	{
@@ -121,13 +125,16 @@ void		daemonize(void)
 	}
 	else if (pid != 0)
 		exit(EXIT_SUCCESS);
+	/* assign the root directory to the current working directory */
 	if (chdir("/") < 0)
 	{
 		ft_putstr_fd("It is not possible to make the current working directory /", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
+	/* initialize the log file */
 	openlog(LOG_PREFIX, LOG_PID | LOG_CONS | LOG_NDELAY | LOG_NOWAIT, LOG_LOCAL0);
 	(void)setlogmask(LOG_UPTO(LOG_DEBUG));
+	/* close all file descriptors */
 	close_allfd();
 }
 

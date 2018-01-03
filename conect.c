@@ -60,6 +60,7 @@ int 	accept_connections(const int master)
 		}
 		else
 		{
+			/* receiving and responding to a request */
 			retval = handle_connec(slave);
 			if (retval)
 				proceed = 0;
@@ -73,11 +74,14 @@ void	*ft_conect(void *arg)
 {
 	int		sock;
 
+	/* getting socket connection */
 	if (bind_passive_socket(&sock) != 0)
 	{
 		syslog(LOG_ERR, "bind() failed");
 		if (pcap)
 			pcap_close(pcap);
+		ft_dell_tree(root_nod);
+		root_nod = NULL;
 		exit(EXIT_FAILURE);
 	}
 	while (1)
