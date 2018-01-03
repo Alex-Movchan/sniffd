@@ -14,6 +14,7 @@ b. stop​ (packets are not sniffed)
 c. show​ ​[ip]​ ​count​ ​(print number of packets received from ip address)
 d. select​ ​iface​ ​[iface]​ ​(select interface for sniffing eth0, wlan0, ethN,
 wlanN...)
+show​ ​[iface]​ ​count​ ​(print number of packets received from iface)
 e. stat​ [iface]​ show all collected statistics for particular interface, if iface
 omitted - for all interfaces.
 f. --help​ ​(show usage information)

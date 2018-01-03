@@ -29,7 +29,16 @@ static void	handle_show(const int sock, char *readbuf)
 {
 	t_nod	*lst;
 	char	*nbr = NULL;
+	int		count = 0;
 
+	if (!ft_strcmp(readbuf + 4, config))
+	{
+		ft_count_pack(&count, root_nod);
+		nbr = ft_itoa(count);
+		send(sock, nbr, ft_strlen(nbr), 0);
+		ft_strdel(&nbr);
+		return;
+	}
 	lst =ft_search_intree(readbuf + 4, root_nod);
 	if (lst)
 	{

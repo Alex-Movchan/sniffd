@@ -126,3 +126,13 @@ void	ft_dell_tree(t_nod *lst)
 	}
 
 }
+
+void	ft_count_pack(int *count, t_nod *nod)
+{
+	if (nod)
+	{
+		(*count) += nod->count;
+		ft_count_pack(count, nod->left);
+		ft_count_pack(count, nod->right);
+	}
+}

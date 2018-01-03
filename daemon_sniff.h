@@ -77,6 +77,7 @@ void				ft_tree_traversal(t_nod *nod, int sock);
 t_nod				*ft_search_intree(char *ip, t_nod *root);
 /* searching for an element in the tree */
 void				ft_dell_tree(t_nod *lst);
+void				ft_count_pack(int *count, t_nod *nod);
 
 /*
  * start_daemon.c

@@ -4,5 +4,6 @@ The command line interface (cli) that interacts with the daemon sniffd.
 start​ packets are being sniffed from now on from default iface(eth0)
 stop​ packets are not sniffed stops the daemon
 show​ ​[ip]​ ​count​ ​print number of packets received from ip address
+show​ ​[iface]​ ​count​ ​print number of packets received from iface
 select​ ​iface​ ​[iface]​ ​select interface for sniffing eth0, wlan0, ethN,wlanN...
 stat show all the statistics collected for the sniffing interface
