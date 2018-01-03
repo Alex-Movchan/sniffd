@@ -1,4 +1,7 @@
 # sniffd
+
+#Linux Ubuntu 16.04
+
 1. A daemon should be implemented that sniffs packets from particular interface. It
 saves ip addresses of incoming packets and number of packets from each ip.
 2. Time complexity for ip search should be log(N).
